@@ -153,6 +153,119 @@ Essa lista representa uma tabela simples de banco de dados. O sistema acessa o p
 - [ ] As quatro perguntas foram respondidas por escrito.
 - [ ] As respostas foram ajustadas com minhas próprias palavras.
 
+## Histórico completo da conversa do projeto
+
+> Esta seção registra a sequência de pedidos, decisões e alterações realizadas durante a construção do projeto. Informações técnicas internas da ferramenta foram omitidas; foram mantidas as decisões relacionadas ao trabalho.
+
+### 1. Análise inicial do material
+
+**Pedido:** analisar a folha de persona preenchida à mão e montar um documento respondendo às questões com foco em uma melhor experiência de UX.
+
+**Decisão:** considerar como persona principal o atendente do estacionamento, que precisa decidir rapidamente se um veículo pode entrar, inclusive em condições de chuva ou usando luvas.
+
+**Diretriz definida:** a tela deveria priorizar a leitura rápida de vagas disponíveis, status da entrada, ação principal e possibilidade de desfazer um erro.
+
+### 2. Documento de persona e UX
+
+Foi criado um documento editável com:
+
+- identificação e contexto da persona;
+- objetivo principal;
+- necessidades, dores e dificuldades;
+- comportamento esperado;
+- respostas das perguntas de persona;
+- requisitos de interface;
+- melhorias recomendadas;
+- critérios de validação da experiência.
+
+### 3. Perguntas obrigatórias da Etapa 3
+
+**Pedido:** analisar cada uma das quatro perguntas obrigatórias e criar um documento editável para ajustes.
+
+As perguntas registradas foram:
+
+1. O que esse código faz, em uma frase, sem termo técnico?
+2. Qual linha você não consegue explicar?
+3. O que acontece se apagar a linha que o professor apontar?
+4. Onde a IA desobedeceu ao seu prompt?
+
+Para cada pergunta, foram incluídos:
+
+- o que a pergunta avalia;
+- uma resposta inicial baseada no projeto;
+- explicação do motivo da resposta;
+- espaço para o aluno reescrever com suas próprias palavras.
+
+### 4. Melhorias da interface
+
+**Pedido:** mudar a visualização pensando em um estacionamento real, mantendo as regras do projeto.
+
+Foram discutidas e implementadas as seguintes mudanças:
+
+- contador principal mostrando apenas as vagas livres;
+- texto complementar com a capacidade total;
+- quantidade de vagas ocupadas;
+- status de entrada liberada, poucas vagas ou estacionamento lotado;
+- bloqueio do botão quando o estacionamento está lotado;
+- registro da última entrada;
+- possibilidade de desfazer a última entrada;
+- indicação de atualização do painel;
+- botões maiores e mais fáceis de usar com luvas;
+- orientação contextual para o atendente.
+
+### 5. Ajuste da orientação ao usuário
+
+O texto genérico “Toque no botão quando o carro entrar” foi substituído por:
+
+> **Pronto para registrar?**  
+> Toque em “Registrar entrada” quando o veículo entrar.
+
+Depois, a orientação foi alinhada visualmente com os botões. Ela passou a ficar dentro do mesmo bloco de ações, com a mesma largura, borda e espaçamento dos botões, sem ocupar toda a página.
+
+### 6. Ações visuais dos botões
+
+Foram adicionados comportamentos visuais aos dois botões:
+
+- mudança de cor ao passar o mouse;
+- destaque ao receber foco;
+- efeito de pressão ao clicar;
+- cursor de elemento clicável;
+- comentários no CSS explicando cada comportamento.
+
+As ações funcionais continuam sendo:
+
+- **Registrar entrada:** diminui uma vaga livre e confirma o registro.
+- **Desfazer última entrada:** recupera uma vaga e informa que a entrada foi desfeita.
+
+### 7. Comentários explicativos no código
+
+Foram mantidos comentários nos trechos novos do HTML, CSS e JavaScript. Os comentários explicam por que cada código foi criado, por exemplo:
+
+- por que a ocupação é mostrada separadamente;
+- por que a última ação é exibida;
+- por que o botão é bloqueado quando não há vagas;
+- por que a orientação fica junto dos botões;
+- por que os botões possuem efeitos visuais.
+
+### 8. Arquivos envolvidos
+
+- `index.html`: estrutura e textos da tela;
+- `estilo.css`: layout, cores, botões, estados e efeitos visuais;
+- `script.js`: contagem de vagas, entrada, desfazer e status;
+- `documento-persona-ux.md`: análise da persona e diretrizes de UX;
+- `analise-etapa-3-perguntas-editavel.md`: análise editável das quatro perguntas.
+
+### 9. Estado atual do projeto
+
+O sistema funciona como um painel simples de controle de entrada. O fluxo principal é:
+
+1. O atendente olha o número de vagas livres.
+2. Verifica se a entrada está liberada.
+3. O veículo entra.
+4. O atendente toca em “Registrar entrada”.
+5. O painel atualiza as vagas livres, ocupadas e a última ação.
+6. Se houver erro, o atendente toca em “Desfazer última entrada”.
+
 ## Atualização visual e funcional da tela
 
 Para aproximar o sistema de um estacionamento real, foram feitas novas melhorias mantendo as regras do projeto.
