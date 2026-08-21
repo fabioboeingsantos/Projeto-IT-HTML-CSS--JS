@@ -1,10 +1,6 @@
-# Etapa 3 - Análise e respostas das quatro perguntas obrigatórias
+# Etapa 3 
 
 **Projeto:** Sistema de controle de entrada do estacionamento do evento  
-**Aluno:** [preencher]  
-**Data:** [preencher]  
-
-> Documento editável para revisão. Os trechos entre colchetes podem ser substituídos.
 
 ## Como este documento foi montado
 
@@ -122,34 +118,4 @@ Esta pergunta verifica se o aluno comparou o resultado produzido pela IA com o p
 - [ ] Os comentários da IA foram revisados e reescritos com minhas palavras.
 - [ ] A acentuação dos textos foi corrigida.
 
-### Minha versão final
-
-[Escreva aqui apenas os pontos que realmente aconteceram depois de comparar o prompt, a tabela e o código.]
-
----
-
-## Revisão final da Etapa 3
-
-### O que deve ser feito
-
-1. Digitar o prompt original sem modificá-lo.
-2. Voltar à tabela de requisitos e conferir cada linha.
-3. Marcar os pontos em que o código não atende ao combinado.
-4. Corrigir a tela até atender a todos os requisitos.
-5. Apagar comentários da IA e reescrever as explicações com minhas palavras.
-
-### Registro das correções
-
-| Item revisado | Situação | Ajuste necessário |
-|---|---|---|
-| Texto da interface | [ ] pendente / [ ] concluído | [descrever] |
-| Acentuação | [ ] pendente / [ ] concluído | [descrever] |
-| Contagem de vagas | [ ] pendente / [ ] concluído | [descrever] |
-| Entrada lotada | [ ] pendente / [ ] concluído | [descrever] |
-| Desfazer entrada | [ ] pendente / [ ] concluído | [descrever] |
-| Comentários da IA | [ ] pendente / [ ] concluído | [descrever] |
-
-## Conclusão do aluno
-
-[Escreva um parágrafo curto dizendo o que você entendeu sobre o código, qual foi a principal correção e como a tela ajuda o atendente do estacionamento.]
 
