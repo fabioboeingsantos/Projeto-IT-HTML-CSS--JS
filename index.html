@@ -10,17 +10,19 @@
   <!-- POR QUE: header identifica a tela e fica separado da ação principal. -->
   <header class="cabecalho">
     <p class="marca">ESTACIONAMENTO DO EVENTO</p>
-    <p class="status-conexao">CONTROLE DE ENTRADA</p>
+    <p class="status-conexao"><span class="status-ponto"></span> CONTROLE DE ENTRADA</p>
   </header>
 
   <main>
     <!-- POR QUE: section agrupa a informação que Tiago precisa consultar em dois segundos. -->
     <section class="painel-vagas">
-      <p class="rotulo">VAGAS</p>
-      <p id="quantidade-vagas" class="quantidade">127/127</p>
-      <p class="disponiveis">LIVRES / TOTAL</p>
+      <p class="rotulo">VAGAS DISPONÍVEIS</p>
+      <p id="quantidade-vagas" class="quantidade">127</p>
+      <p id="capacidade-total" class="disponiveis">de 127 vagas totais</p>
+      <!-- POR QUE: mostra a ocupação de forma complementar, sem obrigar o atendente a fazer contas. -->
+      <p id="ocupacao" class="ocupacao">0 ocupadas</p>
       <p id="mensagem" class="mensagem">ENTRADA LIBERADA</p>
-      <p id="confirmacao" class="confirmacao">AGUARDANDO AÇÃO</p>
+      <p id="confirmacao" class="confirmacao">Aguardando registro de entrada</p>
     </section>
 
     <!-- COMPLETAR: escrever aqui, à mão, uma orientação curta para a equipe. -->
@@ -28,15 +30,14 @@
       <!-- DECISAO SUA: deixei as ações separadas para evitar erro entre registrar e desfazer uma entrada. -->
       <button id="botao-entrada" class="botao-principal" type="button">REGISTRAR ENTRADA</button>
       <button id="botao-desfazer" class="botao-secundario" type="button">DESFAZER ÚLTIMA ENTRADA</button>
+      <!-- POR QUE: informa a última ação sem criar uma nova tela ou exigir digitação. -->
+      <p id="ultima-entrada" class="ultima-entrada">Nenhuma entrada registrada neste turno</p>
     </section>
 
-    <!-- COMPLETAR: escrever aqui, à mão, o nome do responsável pelo controle. -->
-    <!-- COMPLETAR: escrever aqui, à mão, o horário de atualização do painel. -->
+    <!-- POR QUE: explica exatamente quando o atendente deve usar o botão principal. -->
+    <p class="orientacao"><strong>Pronto para registrar?</strong><br>Toque em “Registrar entrada” quando o veículo entrar.</p>
+    <p class="ultima-atualizacao">Painel atualizado <span id="horario-atualizacao">agora</span></p>
   </main>
-
-  <footer class="rodape">
-    <p>Toque no botão quando o carro entrar</p>
-  </footer>
 
   <script src="script.js"></script>
 </body>

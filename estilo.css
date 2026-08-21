@@ -1,7 +1,7 @@
 :root {
   --azul-noite: #071b2d;
   --azul-painel: #0d2e49;
-  --azul-botao: #0879b8;
+  --azul-botao: #1597d4;
   --branco: #f7fbff;
   --verde: #39e58c;
   --amarelo: #ffd166;
@@ -18,64 +18,84 @@ body {
   color: var(--branco);
   font-family: Arial, sans-serif;
   text-align: center;
+  min-height: 100vh;
 }
 
 .cabecalho {
-  padding: 24px 16px 16px;
+  padding: 32px 16px 22px;
 }
 
 .marca {
   margin: 0;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
 }
 
 .status-conexao {
   margin: 10px 0 0;
-  color: var(--verde);
+  color: #a9c0d2;
   font-size: 13px;
   font-weight: 700;
+}
+
+.status-ponto {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--verde);
+  border-radius: 50%;
+  vertical-align: 1px;
 }
 
 .painel-vagas {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 24px 16px;
-  padding: 34px 16px;
+  margin: 18px 16px 24px;
+  padding: 30px 18px 28px;
   background-color: var(--azul-painel);
-  border: 3px solid var(--verde);
-  border-radius: 24px;
+  border: 1px solid rgba(57, 229, 140, .6);
+  border-radius: 18px;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, .18);
 }
 
 .rotulo,
 .disponiveis {
   margin: 0;
-  font-size: 22px;
+  font-size: 16px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1.4px;
+}
+
+/* POR QUE: diferencia a ocupação do número principal sem competir com ele. */
+.ocupacao {
+  margin: 8px 0 0;
+  color: #91aec1;
+  font-size: 14px;
 }
 
 .disponiveis {
   color: #b7c9d8;
-  font-size: 16px;
+  font-size: 15px;
+  letter-spacing: 0;
+  font-weight: 400;
 }
 
 .quantidade {
-  margin: 12px 0;
-  font-size: 108px;
+  margin: 12px 0 2px;
+  font-size: 96px;
   font-weight: 700;
   line-height: 1;
 }
 
 .mensagem {
-  margin: 28px 0 0;
+  margin: 26px 0 0;
   padding: 16px;
   width: 100%;
   background-color: var(--verde);
   color: var(--azul-noite);
-  border-radius: 12px;
-  font-size: 24px;
+  border-radius: 10px;
+  font-size: 22px;
   font-weight: 700;
 }
 
@@ -89,10 +109,17 @@ body {
 }
 
 .confirmacao {
-  margin: 18px 0 0;
+  margin: 16px 0 0;
   color: #b7c9d8;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* POR QUE: mantém o histórico imediato visível para reduzir dúvidas após o toque. */
+.ultima-entrada {
+  margin: 16px 0 0;
+  color: #a9c0d2;
+  font-size: 13px;
 }
 
 .acao {
@@ -105,9 +132,17 @@ body {
   background-color: var(--azul-botao);
   color: var(--branco);
   border: 3px solid var(--branco);
-  border-radius: 14px;
-  font-size: 20px;
+  border-radius: 12px;
+  font-size: 19px;
   font-weight: 700;
+}
+
+/* POR QUE: comunica visualmente que a ação não pode ser usada quando não há vagas. */
+.botao-principal:disabled {
+  background-color: #536b7b;
+  border-color: #8da2b0;
+  cursor: not-allowed;
+  opacity: .8;
 }
 
 .botao-secundario {
@@ -115,16 +150,39 @@ body {
   padding: 18px 16px;
   width: 100%;
   background-color: transparent;
-  color: var(--branco);
-  border: 2px solid #b7c9d8;
-  border-radius: 14px;
-  font-size: 16px;
+  color: #b7c9d8;
+  border: 1px solid #6f8da3;
+  border-radius: 12px;
+  font-size: 14px;
   font-weight: 700;
 }
 
 .rodape {
   padding: 22px 16px;
   color: #b7c9d8;
+  font-size: 15px;
+}
+
+.ultima-atualizacao {
+  margin: 16px 16px 0;
+  color: #7f9aae;
+  font-size: 12px;
+}
+
+/* POR QUE: transforma a orientação em uma instrução curta, visível e fácil de seguir. */
+.orientacao {
+  margin: 24px 16px 0;
+  padding: 14px 16px;
+  color: #d8e8f2;
+  background-color: rgba(21, 151, 212, .12);
+  border-left: 3px solid var(--azul-botao);
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.orientacao strong {
+  color: var(--branco);
   font-size: 15px;
 }
 

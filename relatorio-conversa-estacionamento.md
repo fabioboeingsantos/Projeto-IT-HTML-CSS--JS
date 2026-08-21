@@ -152,3 +152,32 @@ Essa lista representa uma tabela simples de banco de dados. O sistema acessa o p
 - [ ] Os comentários da IA foram revisados ou removidos.
 - [ ] As quatro perguntas foram respondidas por escrito.
 - [ ] As respostas foram ajustadas com minhas próprias palavras.
+
+## Atualização visual e funcional da tela
+
+Para aproximar o sistema de um estacionamento real, foram feitas novas melhorias mantendo as regras do projeto.
+
+### Melhorias adicionadas
+
+- O painel agora mostra vagas livres, vagas ocupadas e capacidade total.
+- A informação principal passou a ser exibida como “vagas disponíveis”, reduzindo a necessidade de interpretação.
+- O sistema informa a última entrada registrada ou desfeita.
+- O botão de entrada fica bloqueado quando o estacionamento está lotado.
+- A orientação ao atendente foi reescrita para indicar exatamente o momento da ação: “Toque em Registrar entrada quando o veículo entrar”.
+- A informação de atualização foi simplificada para “Painel atualizado agora”.
+- A orientação recebeu destaque visual próprio, sem competir com o contador de vagas.
+
+### Por que essas mudanças melhoram a experiência
+
+O atendente trabalha com pouco tempo e precisa tomar uma decisão rápida. Mostrar “vagas disponíveis” e “vagas ocupadas” reduz contas mentais. Informar a última ação ajuda a confirmar que o toque foi realizado. Bloquear o botão quando não há vagas evita uma ação inválida. A orientação contextual explica o próximo passo sem exigir treinamento ou leitura extensa.
+
+### Comentários no código
+
+Foram mantidos comentários explicativos nos trechos novos do HTML, CSS e JavaScript. Cada comentário registra o motivo da decisão, por exemplo:
+
+- por que a ocupação é mostrada separadamente;
+- por que a última ação é exibida;
+- por que o botão é bloqueado quando o estacionamento está lotado;
+- por que a instrução aparece próxima às ações.
+
+Esses comentários ajudam a explicar a relação entre o requisito da persona e a implementação, mas devem ser revisados e reescritos com as palavras do aluno antes da entrega final.
