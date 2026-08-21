@@ -135,6 +135,20 @@ body {
   border-radius: 12px;
   font-size: 19px;
   font-weight: 700;
+  cursor: pointer;
+  transition: background-color .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+
+/* POR QUE: mostra que o botão principal está pronto para receber uma ação. */
+.botao-principal:hover:not(:disabled),
+.botao-principal:focus-visible:not(:disabled) {
+  background-color: #25aae5;
+  box-shadow: 0 6px 14px rgba(21, 151, 212, .28);
+}
+
+/* POR QUE: confirma visualmente o momento em que o atendente pressiona o botão. */
+.botao-principal:active:not(:disabled) {
+  transform: scale(.98);
 }
 
 /* POR QUE: comunica visualmente que a ação não pode ser usada quando não há vagas. */
@@ -155,6 +169,20 @@ body {
   border-radius: 12px;
   font-size: 14px;
   font-weight: 700;
+  cursor: pointer;
+  transition: background-color .15s ease, color .15s ease, transform .15s ease;
+}
+
+/* POR QUE: diferencia a ação secundária quando o usuário aponta para ela. */
+.botao-secundario:hover,
+.botao-secundario:focus-visible {
+  background-color: rgba(183, 201, 216, .12);
+  color: var(--branco);
+}
+
+/* POR QUE: dá retorno imediato ao toque na ação de desfazer. */
+.botao-secundario:active {
+  transform: scale(.98);
 }
 
 .rodape {
@@ -171,13 +199,16 @@ body {
 
 /* POR QUE: transforma a orientação em uma instrução curta, visível e fácil de seguir. */
 .orientacao {
-  margin: 24px 16px 0;
-  padding: 14px 16px;
+  display: block;
+  width: 100%;
+  margin: 24px 0 0;
+  padding: 16px;
   color: #d8e8f2;
-  background-color: rgba(21, 151, 212, .12);
-  border-left: 3px solid var(--azul-botao);
-  border-radius: 8px;
+  background-color: transparent;
+  border: 2px solid #b7c9d8;
+  border-radius: 12px;
   font-size: 14px;
+  font-weight: 700;
   line-height: 1.5;
 }
 
