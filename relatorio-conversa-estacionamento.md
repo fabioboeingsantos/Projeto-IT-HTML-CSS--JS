@@ -99,3 +99,56 @@ Essa lista representa uma tabela simples de banco de dados. O sistema acessa o p
 - **As lacunas que preenchi à mão:** orientação da equipe, responsável pelo controle e horário de atualização.
 - **O que mudei no que ela entregou, e por quê:** acrescentei o botão para desfazer entradas, mensagens de confirmação e o indicador `livres/total`, para reduzir erros durante o atendimento.
 - **O que ela sugeriu e eu recusei, e por quê:** não foram utilizados campos de digitação, bibliotecas, frameworks ou mensagens `alert`, pois são desnecessários ou proibidos pelas regras do projeto.
+-
+## Etapa 3: análise das quatro perguntas obrigatórias
+
+### 1. O que esse código faz, em uma frase, sem termo técnico?
+
+**Análise:** verifica se consigo explicar a finalidade do sistema para uma pessoa que não programa.
+
+**Resposta:** este sistema mostra quantas vagas ainda estão disponíveis e permite registrar a entrada de cada carro no estacionamento do evento.
+
+**Ajuste pessoal:** [reescrever com minhas palavras].
+
+### 2. Qual linha você não consegue explicar?
+
+**Análise:** verifica se revisei o código e reconheço uma parte que ainda preciso estudar.
+
+**Resposta inicial:** eu ainda tenho dificuldade para explicar completamente a linha `document.querySelector("#quantidade-vagas")`. Entendo que ela encontra na tela o elemento que mostra as vagas, mas ainda preciso revisar como o seletor com `#` localiza um elemento pelo seu identificador.
+
+**Ajuste pessoal:** [substituir pela linha que realmente gera dúvida].
+
+### 3. O que acontece se apagar a linha que o professor apontar?
+
+**Análise:** verifica se entendo a consequência prática de remover uma instrução do código.
+
+**Resposta inicial:** se eu apagar a linha `const quantidadeVagas = document.querySelector("#quantidade-vagas")`, a função que atualiza o painel não conseguirá alterar corretamente o número de vagas e o navegador poderá apresentar um erro no JavaScript.
+
+**Ajuste pessoal:** [adaptar à linha indicada pelo professor].
+
+### 4. Onde a IA desobedeceu ao seu prompt?
+
+**Análise:** verifica se comparei o prompt, a tabela de requisitos e o código entregue pela IA.
+
+**Resposta inicial:** a IA desobedeceu parcialmente ao requisito de entregar textos finais sem comentários de revisão. O código veio com comentários como `COMPLETAR` e `DECISAO SUA`, que deveriam ser retirados ou reescritos antes da entrega. Também houve problemas de acentuação em alguns textos, como `AÃ‡ÃƒO`, o que prejudica a leitura.
+
+**Ajuste pessoal:** [manter somente os pontos confirmados na comparação com o prompt].
+
+## Revisão final da Etapa 3
+
+1. Digitar o prompt original sem modificar.
+2. Conferir a tabela de requisitos linha por linha.
+3. Marcar cada ponto em que o código desobedece ao combinado.
+4. Corrigir a tela até atender a todos os requisitos.
+5. Apagar comentários da IA e reescrever as explicações com minhas palavras.
+
+### Checklist de conferência
+
+- [ ] O texto da interface está correto e com acentuação adequada.
+- [ ] A quantidade de vagas diminui ao registrar uma entrada.
+- [ ] A entrada é bloqueada quando o estacionamento está lotado.
+- [ ] A ação de desfazer recupera a última entrada.
+- [ ] A tela informa quando restam poucas vagas.
+- [ ] Os comentários da IA foram revisados ou removidos.
+- [ ] As quatro perguntas foram respondidas por escrito.
+- [ ] As respostas foram ajustadas com minhas próprias palavras.
