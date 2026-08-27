@@ -6,12 +6,8 @@ const ocupacao = document.querySelector("#ocupacao");
 const ultimaEntrada = document.querySelector("#ultima-entrada");
 const botaoEntrada = document.querySelector("#botao-entrada");
 const botaoDesfazer = document.querySelector("#botao-desfazer");
-// POR QUE: esta lista representa uma tabela simples do banco de dados do estacionamento.
-const bancoEstacionamento = [
-  { id: 1, nome: "Estacionamento do Evento", vagasLivres: 127, totalVagas: 127 }
-];
-
-const estacionamento = bancoEstacionamento[0];
+const botaoSaida = document.querySelector("#botao-saida");
+let estacionamento;
 let entradasRegistradas = 0;
 
 // POR QUE: guarda a última ação para permitir uma correção rápida sem formulário ou teclado.
@@ -26,11 +22,15 @@ function atualizarPainel() {
   ultimaEntrada.textContent = ultimaAcao;
   botaoEntrada.textContent = "REGISTRAR ENTRADA";
   mensagem.classList.remove("mensagem-atencao");
+  mensagem.classList.remove("mensagem-laranja");
   mensagem.classList.remove("mensagem-erro");
   // POR QUE: evita que o atendente tente tocar em uma ação impossível.
   botaoEntrada.disabled = false;
+  botaoDesfazer.disabled = false;
+  botaoSaida.disabled = false;
 
-  if (estacionamento.vagasLivres === 0) {
+  if (estacionamento.vagasLivres <= 0) {
+    estacionamento.vagasLivres = 0;
     mensagem.textContent = "ERRO: ESTACIONAMENTO LOTADO";
     mensagem.classList.add("mensagem-erro");
     botaoEntrada.textContent = "ENTRADA BLOQUEADA";
@@ -38,9 +38,15 @@ function atualizarPainel() {
     return;
   }
 
-  if (estacionamento.vagasLivres < 10) {
+  if (estacionamento.vagasLivres <= 10) {
     mensagem.textContent = "ATENÇÃO: POUCAS VAGAS";
-    mensagem.classList.add("mensagem-atencao");
+    mensagem.classList.add("mensagem-erro");
+    return;
+  }
+
+  if (estacionamento.vagasLivres <= estacionamento.totalVagas / 2) {
+    mensagem.textContent = "ATENÇÃO: POUCAS VAGAS";
+    mensagem.classList.add("mensagem-laranja");
     return;
   }
 
@@ -49,13 +55,13 @@ function atualizarPainel() {
 
 function registrarEntrada() {
   // POR QUE: impede que o sistema registre um carro quando não há vaga disponível.
-  if (estacionamento.vagasLivres === 0) {
+  if (estacionamento.vagasLivres <= 0) {
     confirmacao.textContent = "ENTRADA NÃO REGISTRADA";
     atualizarPainel();
     return;
   }
 
-  estacionamento.vagasLivres = estacionamento.vagasLivres - 1;
+  estacionamento.vagasLivres = Math.max(0, estacionamento.vagasLivres - 1);
   entradasRegistradas = entradasRegistradas + 1;
   ultimaAcao = "Última entrada registrada agora";
   confirmacao.textContent = "ENTRADA CONFIRMADA";
@@ -69,15 +75,69 @@ function desfazerEntrada() {
     return;
   }
 
-  estacionamento.vagasLivres = estacionamento.vagasLivres + 1;
+  estacionamento.vagasLivres = Math.min(estacionamento.totalVagas, estacionamento.vagasLivres + 1);
   entradasRegistradas = entradasRegistradas - 1;
   ultimaAcao = "Última entrada desfeita agora";
   confirmacao.textContent = "ENTRADA DESFEITA";
   atualizarPainel();
 }
 
+function registrarSaida() {
+  if (estacionamento.vagasLivres >= estacionamento.totalVagas) {
+    estacionamento.vagasLivres = estacionamento.totalVagas;
+    confirmacao.textContent = "NENHUM VEÍCULO PARA REGISTRAR SAÍDA";
+    return;
+  }
+
+  estacionamento.vagasLivres = Math.min(estacionamento.totalVagas, estacionamento.vagasLivres + 1);
+  ultimaAcao = "Última saída registrada agora";
+  confirmacao.textContent = "SAÍDA REGISTRADA";
+  atualizarPainel();
+}
+
 botaoEntrada.addEventListener("click", registrarEntrada);
 botaoDesfazer.addEventListener("click", desfazerEntrada);
+botaoSaida.addEventListener("click", registrarSaida);
 
-// POR QUE: garante que o painel comece sincronizado com os dados do estacionamento.
-atualizarPainel();
+async function carregarVagas() {
+  try {
+    if (window.location.protocol === "file:") {
+      throw new Error("Abra o projeto usando um servidor local, como o Live Server.");
+    }
+
+    const resposta = await fetch("./vagas.json", { cache: "no-store" });
+
+    if (!resposta.ok) {
+      throw new Error("Não foi possível carregar o arquivo de vagas.");
+    }
+
+    const bancoEstacionamento = await resposta.json();
+
+    if (!Array.isArray(bancoEstacionamento) || !bancoEstacionamento[0]) {
+      throw new Error("O arquivo vagas.json precisa conter uma lista com um estacionamento.");
+    }
+
+    estacionamento = bancoEstacionamento[0];
+
+    if (!Number.isFinite(estacionamento.vagasLivres) ||
+        !Number.isFinite(estacionamento.totalVagas) ||
+        estacionamento.totalVagas <= 0 ||
+        estacionamento.vagasLivres < 0 ||
+        estacionamento.vagasLivres > estacionamento.totalVagas) {
+      throw new Error("Os valores de vagas no JSON são inválidos.");
+    }
+
+    atualizarPainel();
+  } catch (erro) {
+    mensagem.textContent = "ERRO AO CARREGAR VAGAS: " + erro.message;
+    mensagem.classList.add("mensagem-erro");
+    botaoEntrada.disabled = true;
+    botaoSaida.disabled = true;
+    console.error(erro);
+  }
+}
+
+botaoEntrada.disabled = true;
+botaoSaida.disabled = true;
+botaoDesfazer.disabled = true;
+carregarVagas();

@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "nome": "Estacionamento do Evento",
+    "vagasLivres": 50,
+    "totalVagas": 50,
+    "vagasOcupadas": 0
+  }
+]

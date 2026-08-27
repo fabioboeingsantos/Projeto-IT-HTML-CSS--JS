@@ -17,8 +17,8 @@
     <!-- POR QUE: section agrupa a informação que Tiago precisa consultar em dois segundos. -->
     <section class="painel-vagas">
       <p class="rotulo">VAGAS DISPONÍVEIS</p>
-      <p id="quantidade-vagas" class="quantidade">127</p>
-      <p id="capacidade-total" class="disponiveis">de 127 vagas totais</p>
+      <p id="quantidade-vagas" class="quantidade">50</p>
+      <p id="capacidade-total" class="disponiveis">de 50 vagas totais</p>
       <!-- POR QUE: mostra a ocupação de forma complementar, sem obrigar o atendente a fazer contas. -->
       <p id="ocupacao" class="ocupacao">0 ocupadas</p>
       <p id="mensagem" class="mensagem">ENTRADA LIBERADA</p>
@@ -29,7 +29,10 @@
     <section class="acao">
       <!-- DECISAO SUA: deixei as ações separadas para evitar erro entre registrar e desfazer uma entrada. -->
       <button id="botao-entrada" class="botao-principal" type="button">REGISTRAR ENTRADA</button>
-      <button id="botao-desfazer" class="botao-secundario" type="button">DESFAZER ÚLTIMA ENTRADA</button>
+      <div class="acoes-secundarias">
+        <button id="botao-desfazer" class="botao-secundario" type="button">DESFAZER ÚLTIMA ENTRADA</button>
+        <button id="botao-saida" class="botao-secundario" type="button">REGISTRAR SAÍDA</button>
+      </div>
       <!-- POR QUE: informa a última ação sem criar uma nova tela ou exigir digitação. -->
       <p id="ultima-entrada" class="ultima-entrada">Nenhuma entrada registrada neste turno</p>
       <!-- POR QUE: mantém a instrução alinhada com os botões e com a mesma área de leitura. -->

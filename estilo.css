@@ -5,6 +5,7 @@
   --branco: #f7fbff;
   --verde: #39e58c;
   --amarelo: #ffd166;
+  --laranja: #f59e0b;
   --vermelho: #ff6b6b;
 }
 
@@ -103,6 +104,10 @@ body {
   background-color: var(--amarelo);
 }
 
+.mensagem-laranja {
+  background-color: var(--laranja);
+}
+
 .mensagem-erro {
   background-color: var(--vermelho);
   color: var(--branco);
@@ -171,6 +176,15 @@ body {
   font-weight: 700;
   cursor: pointer;
   transition: background-color .15s ease, color .15s ease, transform .15s ease;
+}
+
+.acoes-secundarias {
+  display: flex;
+  gap: 10px;
+}
+
+.acoes-secundarias .botao-secundario {
+  flex: 1;
 }
 
 /* POR QUE: diferencia a ação secundária quando o usuário aponta para ela. */
