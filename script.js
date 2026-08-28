@@ -24,6 +24,8 @@ function atualizarPainel() {
   mensagem.classList.remove("mensagem-atencao");
   mensagem.classList.remove("mensagem-laranja");
   mensagem.classList.remove("mensagem-erro");
+  mensagem.classList.remove("mensagem-carregando");
+  mensagem.classList.remove("mensagem-sucesso");
   // POR QUE: evita que o atendente tente tocar em uma ação impossível.
   botaoEntrada.disabled = false;
   botaoDesfazer.disabled = false;
@@ -100,7 +102,14 @@ botaoDesfazer.addEventListener("click", desfazerEntrada);
 botaoSaida.addEventListener("click", registrarSaida);
 
 async function carregarVagas() {
+  const esperar = (tempo) => new Promise((resolver) => setTimeout(resolver, tempo));
+
   try {
+    mensagem.textContent = "CARREGANDO DADOS...";
+    mensagem.className = "mensagem mensagem-carregando";
+    confirmacao.textContent = "Aguarde a leitura do arquivo vagas.json";
+    await esperar(3000);
+
     if (window.location.protocol === "file:") {
       throw new Error("Abra o projeto usando um servidor local, como o Live Server.");
     }
@@ -113,11 +122,11 @@ async function carregarVagas() {
 
     const bancoEstacionamento = await resposta.json();
 
-    if (!Array.isArray(bancoEstacionamento) || !bancoEstacionamento[0]) {
-      throw new Error("O arquivo vagas.json precisa conter uma lista com um estacionamento.");
+    if (!bancoEstacionamento || typeof bancoEstacionamento !== "object") {
+      throw new Error("O arquivo vagas.json precisa conter um objeto de estacionamento.");
     }
 
-    estacionamento = bancoEstacionamento[0];
+    estacionamento = bancoEstacionamento;
 
     if (!Number.isFinite(estacionamento.vagasLivres) ||
         !Number.isFinite(estacionamento.totalVagas) ||
@@ -127,12 +136,18 @@ async function carregarVagas() {
       throw new Error("Os valores de vagas no JSON são inválidos.");
     }
 
+    mensagem.textContent = "DADOS CARREGADOS COM SUCESSO";
+    mensagem.className = "mensagem mensagem-sucesso";
+    confirmacao.textContent = "O estacionamento está pronto para uso";
+    await esperar(3000);
     atualizarPainel();
   } catch (erro) {
     mensagem.textContent = "ERRO AO CARREGAR VAGAS: " + erro.message;
-    mensagem.classList.add("mensagem-erro");
+    mensagem.className = "mensagem mensagem-erro";
+    confirmacao.textContent = "Verifique o arquivo vagas.json e tente novamente";
     botaoEntrada.disabled = true;
     botaoSaida.disabled = true;
+    await esperar(3000);
     console.error(erro);
   }
 }

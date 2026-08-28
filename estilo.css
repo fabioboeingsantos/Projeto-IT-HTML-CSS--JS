@@ -104,6 +104,16 @@ body {
   background-color: var(--amarelo);
 }
 
+.mensagem-carregando {
+  background-color: var(--amarelo);
+  color: var(--azul-noite);
+}
+
+.mensagem-sucesso {
+  background-color: var(--verde);
+  color: var(--azul-noite);
+}
+
 .mensagem-laranja {
   background-color: var(--laranja);
 }
