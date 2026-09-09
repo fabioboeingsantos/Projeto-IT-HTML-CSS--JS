@@ -1,4 +1,6 @@
-$raiz = (Get-Location).Path
+# Usa a pasta deste próprio script, mesmo quando ele é aberto pelo Explorer
+# ou executado a partir de outra pasta.
+$raiz = $PSScriptRoot
 $listener = [Net.Sockets.TcpListener]::new([Net.IPAddress]::Any, 8080)
 $listener.Start()
 Write-Host "Servidor local ativo em http://localhost:8080/"
