@@ -1,0 +1,6 @@
+# Permite o rastreamento do site público por buscadores e agentes de IA.
+User-agent: *
+Allow: /
+
+# Localização do mapa das páginas públicas.
+Sitemap: https://fabioboeingsantos.github.io/Projeto-IT-HTML-CSS--JS/sitemap.xml

@@ -1,47 +1,91 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <!-- Metadados básicos: codificação, idioma e adaptação para celulares. -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Estacionamento do Evento</title>
-  <link rel="stylesheet" href="estilo.css">
+  <meta name="theme-color" content="#071b2d">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="author" content="Estacionamento do Evento">
+  <!-- Metadados para buscadores, redes sociais e agentes de IA. -->
+  <meta name="description" content="Estacionamento do Evento é um painel simples para controlar vagas e registrar entradas e saídas de veículos em tempo real durante eventos.">
+  <link rel="canonical" href="https://fabioboeingsantos.github.io/Projeto-IT-HTML-CSS--JS/">
+  <link rel="alternate" hreflang="pt-BR" href="https://fabioboeingsantos.github.io/Projeto-IT-HTML-CSS--JS/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Estacionamento do Evento">
+  <meta property="og:title" content="Estacionamento do Evento — Controle sem perder tempo">
+  <meta property="og:description" content="Controle vagas e registre entradas e saídas de veículos com rapidez e clareza durante eventos.">
+  <meta property="og:url" content="https://fabioboeingsantos.github.io/Projeto-IT-HTML-CSS--JS/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Estacionamento do Evento — Controle sem perder tempo">
+  <meta name="twitter:description" content="Painel simples para controle de entrada, saída e vagas em estacionamentos de eventos.">
+  <title>Estacionamento do Evento — Controle de vagas em tempo real</title>
+  <link rel="stylesheet" href="landing.css">
+  <!-- Dados estruturados: descrevem o produto em formato compreensível por máquinas. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Estacionamento do Evento",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "inLanguage": "pt-BR",
+    "description": "Painel web para controlar vagas e registrar entradas e saídas de veículos em estacionamentos de eventos.",
+    "url": "https://fabioboeingsantos.github.io/Projeto-IT-HTML-CSS--JS/",
+    "featureList": ["Visualização de vagas disponíveis", "Registro de entrada de veículos", "Registro de saída de veículos", "Desfazer da última entrada"]
+  }
+  </script>
+  <!-- FAQ estruturado: espelha as perguntas visíveis na página para interpretação automática. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"O que é o Estacionamento do Evento?","acceptedAnswer":{"@type":"Answer","text":"É um painel web para acompanhar vagas e controlar a entrada e a saída de veículos durante eventos."}},
+      {"@type":"Question","name":"Como registrar a entrada de um veículo?","acceptedAnswer":{"@type":"Answer","text":"Abra o painel, confira o número de vagas disponíveis e toque em Registrar entrada."}},
+      {"@type":"Question","name":"O painel funciona em celular e tablet?","acceptedAnswer":{"@type":"Answer","text":"Sim. A interface foi desenhada para uso em celular, tablet e computador."}}
+    ]
+  }
+  </script>
 </head>
 <body>
-  <!-- POR QUE: header identifica a tela e fica separado da ação principal. -->
-  <header class="cabecalho">
-    <p class="marca">ESTACIONAMENTO DO EVENTO</p>
-    <p class="status-conexao"><span class="status-ponto"></span> CONTROLE DE ENTRADA</p>
+  <!-- Link de acessibilidade: permite que leitores de tela pulem a navegação. -->
+  <a class="skip-link" href="#inicio">Pular para o conteúdo principal</a>
+  <!-- Cabeçalho: identidade do produto e navegação interna. -->
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="Estacionamento do Evento - início"><span class="brand-mark" aria-hidden="true">E</span><span>ESTACIONAMENTO<br><strong>DO EVENTO</strong></span></a>
+    <nav class="main-nav" aria-label="Navegação principal"><a href="#como-funciona">Como funciona</a><a href="#beneficios">Benefícios</a><a class="nav-cta" href="painel.html">Abrir painel <span aria-hidden="true">↗</span></a></nav>
   </header>
-
-  <main>
-    <!-- POR QUE: section agrupa a informação que Tiago precisa consultar em dois segundos. -->
-    <section class="painel-vagas">
-      <p class="rotulo">VAGAS DISPONÍVEIS</p>
-      <p id="quantidade-vagas" class="quantidade">50</p>
-      <p id="capacidade-total" class="disponiveis">de 50 vagas totais</p>
-      <!-- POR QUE: mostra a ocupação de forma complementar, sem obrigar o atendente a fazer contas. -->
-      <p id="ocupacao" class="ocupacao">0 ocupadas</p>
-      <p id="mensagem" class="mensagem mensagem-carregando">CARREGANDO DADOS...</p>
-      <p id="confirmacao" class="confirmacao">Aguardando registro de entrada</p>
+  <!-- Conteúdo principal da apresentação do produto. -->
+  <main id="inicio">
+    <!-- Hero: proposta de valor e chamada para testar a aplicação. -->
+    <section class="hero section-shell" aria-labelledby="titulo-principal">
+      <div class="hero-copy"><p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> CONTROLE DE ENTRADA EM TEMPO REAL</p><h1 id="titulo-principal">Menos fila.<br><span>Mais controle.</span></h1><p class="hero-text">Saiba em dois segundos se ainda há vaga e registre cada entrada com um toque.</p><div class="hero-actions"><a class="button button-primary" href="painel.html">Testar o painel <span aria-hidden="true">→</span></a><a class="text-link" href="#como-funciona">Ver como funciona <span aria-hidden="true">↓</span></a></div><div class="hero-proof"><span class="proof-line" aria-hidden="true"></span><span>Feito para eventos em movimento</span></div></div>
+      <!-- Prévia visual com texto real, acessível a leitores e rastreadores. -->
+      <div class="hero-visual" role="img" aria-label="Prévia do painel com 50 vagas disponíveis e entrada liberada"><div class="glow glow-one" aria-hidden="true"></div><div class="glow glow-two" aria-hidden="true"></div><div class="dashboard-card"><div class="dashboard-topline"><span>ESTACIONAMENTO DO EVENTO</span><span class="live-label"><i aria-hidden="true"></i> AO VIVO</span></div><div class="dashboard-status">VAGAS DISPONÍVEIS</div><div class="dashboard-number">50</div><div class="dashboard-total">de 50 vagas totais</div><div class="dashboard-occupied">0 ocupadas</div><div class="dashboard-alert">ENTRADA LIBERADA</div><button class="dashboard-button" type="button" aria-label="Exemplo visual do botão registrar entrada">REGISTRAR ENTRADA</button><div class="dashboard-meta"><span>Última atualização</span><strong>agora</strong></div></div></div>
     </section>
-
-    <!-- COMPLETAR: escrever aqui, à mão, uma orientação curta para a equipe. -->
-    <section class="acao">
-      <!-- DECISAO SUA: deixei as ações separadas para evitar erro entre registrar e desfazer uma entrada. -->
-      <button id="botao-entrada" class="botao-principal" type="button">REGISTRAR ENTRADA</button>
-      <div class="acoes-secundarias">
-        <button id="botao-desfazer" class="botao-secundario" type="button">DESFAZER ÚLTIMA ENTRADA</button>
-        <button id="botao-saida" class="botao-secundario" type="button">REGISTRAR SAÍDA</button>
+    <!-- Resumo rápido do fluxo de uso. -->
+    <section class="metrics section-shell" aria-label="Resumo de benefícios"><div><strong>01</strong><span>olhar para a tela</span></div><div><strong>02</strong><span>entender o status</span></div><div><strong>03</strong><span>registrar com um toque</span></div><div class="metrics-note">Uma operação clara<br>do começo ao fim.</div></section>
+    <!-- Benefícios: vantagens principais do sistema. -->
+    <section class="feature-section section-shell" id="beneficios" aria-labelledby="titulo-beneficios"><div class="section-heading"><p class="eyebrow">DESENHADO PARA O RITMO DO EVENTO</p><h2 id="titulo-beneficios">A informação certa,<br><span>na hora certa.</span></h2></div><div class="feature-grid"><article class="feature-card feature-card-highlight"><div class="feature-icon" aria-hidden="true">↗</div><h3>Decisão imediata</h3><p>O número de vagas e o status da entrada ficam em primeiro plano, sem menus ou tabelas para interpretar.</p></article><article class="feature-card"><div class="feature-icon" aria-hidden="true">◎</div><h3>Um toque basta</h3><p>Botões grandes e áreas confortáveis para operar no celular ou tablet, mesmo com luvas.</p></article><article class="feature-card"><div class="feature-icon" aria-hidden="true">↪</div><h3>Erro fácil de corrigir</h3><p>Registrou uma entrada por engano? Desfaça rapidamente sem reiniciar a tela ou preencher formulários.</p></article></div></section>
+    <!-- Como funciona: processo descrito em três etapas. -->
+    <section class="flow-section section-shell" id="como-funciona" aria-labelledby="titulo-fluxo"><div class="flow-copy"><p class="eyebrow">COMO FUNCIONA</p><h2 id="titulo-fluxo">Do carro chegando<br>à entrada registrada.</h2><p>Uma interface operacional precisa acompanhar o ritmo de quem está na linha de frente. Por isso, cada decisão fica visível e cada ação deixa uma confirmação.</p><a class="text-link" href="painel.html">Conhecer o painel <span aria-hidden="true">→</span></a></div><ol class="flow-list"><li><span>01</span><div><strong>Bata o olho</strong><p>Veja quantas vagas estão livres.</p></div></li><li><span>02</span><div><strong>Confirme o status</strong><p>Saiba imediatamente se a entrada está liberada.</p></div></li><li><span>03</span><div><strong>Toque e avance</strong><p>Registre a entrada e siga para o próximo veículo.</p></div></li></ol></section>
+    <!-- FAQ visível: respostas objetivas ajudam usuários, buscadores e agentes de IA. -->
+    <section class="faq-section section-shell" id="perguntas-frequentes" aria-labelledby="titulo-faq">
+      <div class="section-heading"><p class="eyebrow">DÚVIDAS FREQUENTES</p><h2 id="titulo-faq">Tudo claro antes<br><span>do primeiro carro.</span></h2></div>
+      <div class="faq-list">
+        <details><summary>O que é o Estacionamento do Evento?</summary><p>É um painel web para acompanhar vagas e controlar a entrada e a saída de veículos durante eventos.</p></details>
+        <details><summary>Como registrar a entrada de um veículo?</summary><p>Abra o painel, confira o número de vagas disponíveis e toque em <strong>Registrar entrada</strong>.</p></details>
+        <details><summary>O painel funciona em celular e tablet?</summary><p>Sim. A interface foi desenhada para uso em celular, tablet e computador.</p></details>
       </div>
-      <!-- POR QUE: informa a última ação sem criar uma nova tela ou exigir digitação. -->
-      <p id="ultima-entrada" class="ultima-entrada">Nenhuma entrada registrada neste turno</p>
-      <!-- POR QUE: mantém a instrução alinhada com os botões e com a mesma área de leitura. -->
-      <p class="orientacao"><strong>Pronto para registrar?</strong><br>Toque em “Registrar entrada” quando o veículo entrar.</p>
     </section>
 
-    <p class="ultima-atualizacao">Painel atualizado <span id="horario-atualizacao">agora</span></p>
+    <!-- Chamada final para levar o visitante à aplicação funcional. -->
+    <section class="final-cta section-shell" aria-labelledby="titulo-cta"><p class="eyebrow">PRONTO PARA O PRÓXIMO CARRO?</p><h2 id="titulo-cta">Controle a entrada<br><span>sem perder tempo.</span></h2><a class="button button-primary" href="painel.html">Abrir o painel <span aria-hidden="true">→</span></a></section>
   </main>
-
-  <script src="script.js"></script>
+  <!-- Rodapé: identidade e resumo da finalidade do produto. -->
+  <footer class="site-footer section-shell"><span>ESTACIONAMENTO DO EVENTO</span><span>Controle de entrada simples e direto.</span></footer>
 </body>
 </html>

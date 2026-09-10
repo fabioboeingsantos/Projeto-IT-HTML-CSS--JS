@@ -1,3 +1,4 @@
+// Referências aos elementos da interface que serão atualizados pelo JavaScript.
 const quantidadeVagas = document.querySelector("#quantidade-vagas");
 const mensagem = document.querySelector("#mensagem");
 const confirmacao = document.querySelector("#confirmacao");
@@ -7,12 +8,14 @@ const ultimaEntrada = document.querySelector("#ultima-entrada");
 const botaoEntrada = document.querySelector("#botao-entrada");
 const botaoDesfazer = document.querySelector("#botao-desfazer");
 const botaoSaida = document.querySelector("#botao-saida");
+// Estado da aplicação: dados carregados e quantidade de ações realizadas.
 let estacionamento;
 let entradasRegistradas = 0;
 
 // POR QUE: guarda a última ação para permitir uma correção rápida sem formulário ou teclado.
 let ultimaAcao = "Nenhuma entrada registrada neste turno";
 
+// Renderiza o estado atual nos textos, mensagens e botões do painel.
 function atualizarPainel() {
   // POR QUE: vagas livres são a informação principal para a decisão do atendente.
   quantidadeVagas.textContent = estacionamento.vagasLivres;
@@ -55,6 +58,7 @@ function atualizarPainel() {
   mensagem.textContent = "ENTRADA LIBERADA";
 }
 
+// Registra a chegada de um veículo quando há vaga disponível.
 function registrarEntrada() {
   // POR QUE: impede que o sistema registre um carro quando não há vaga disponível.
   if (estacionamento.vagasLivres <= 0) {
@@ -70,6 +74,7 @@ function registrarEntrada() {
   atualizarPainel();
 }
 
+// Reverte a última entrada registrada, quando essa ação for possível.
 function desfazerEntrada() {
   // POR QUE: só permite desfazer ações feitas nesta sessão, evitando ultrapassar a capacidade inicial.
   if (entradasRegistradas === 0) {
@@ -84,6 +89,7 @@ function desfazerEntrada() {
   atualizarPainel();
 }
 
+// Registra a saída de um veículo e libera uma vaga.
 function registrarSaida() {
   if (estacionamento.vagasLivres >= estacionamento.totalVagas) {
     estacionamento.vagasLivres = estacionamento.totalVagas;
@@ -101,6 +107,7 @@ botaoEntrada.addEventListener("click", registrarEntrada);
 botaoDesfazer.addEventListener("click", desfazerEntrada);
 botaoSaida.addEventListener("click", registrarSaida);
 
+// Lê vagas.json e inicia o painel com a configuração do estacionamento.
 async function carregarVagas() {
   const esperar = (tempo) => new Promise((resolver) => setTimeout(resolver, tempo));
 
