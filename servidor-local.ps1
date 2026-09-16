@@ -1,9 +1,9 @@
 # Usa a pasta deste próprio script, mesmo quando ele é aberto pelo Explorer
 # ou executado a partir de outra pasta.
-$raiz = $PSScriptRoot
+$raiz = Join-Path (Join-Path $PSScriptRoot "frontend") "dist"
 $listener = [Net.Sockets.TcpListener]::new([Net.IPAddress]::Any, 8080)
 $listener.Start()
-Write-Host "Servidor local ativo em http://localhost:8080/"
+Write-Host "Build do frontend sendo servido em http://localhost:8080/"
 Write-Host "Pressione Ctrl+C para encerrar."
 try {
   while ($true) {
