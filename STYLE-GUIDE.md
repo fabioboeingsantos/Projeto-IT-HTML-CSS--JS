@@ -243,7 +243,7 @@ Usar uma linguagem que enfatize velocidade, clareza e controle:
 
 ## 12. Dados e contrato atual
 
-O painel carrega `vagas.json` com estes campos:
+O painel consulta a API e recebe estes campos no estado do estacionamento:
 
 ```json
 {
@@ -255,14 +255,13 @@ O painel carrega `vagas.json` com estes campos:
 }
 ```
 
-O valor de `vagasOcupadas` existe no JSON, mas o painel calcula a ocupação a partir de `totalVagas - vagasLivres` para evitar duplicidade.
+O estado é mantido em memória no backend e reiniciado com os valores iniciais quando o servidor é reiniciado. O painel calcula a ocupação a partir de `totalVagas - vagasLivres` para evitar duplicidade.
 
 ## 13. Pontos de atenção identificados
 
-- Há sinais de problemas de codificação de caracteres em alguns arquivos, exibindo sequências como `Ã` e `â`. Salvar todos os arquivos como UTF-8 sem BOM e revisar os textos antes da landing page.
 - O arquivo atual contém comentários de decisão e implementação misturados ao código. Para produção, separar documentação de UX do código e manter comentários apenas quando explicarem uma regra não óbvia.
 - A landing page deve reutilizar os tokens de cor e componentes principais, mas pode usar uma escala tipográfica mais editorial para comunicar valor comercial.
 
 ## 14. Fonte do levantamento
 
-Este guia foi consolidado a partir de `index.html`, `estilo.css`, `script.js`, `vagas.json` e `documento-persona-ux.md` do projeto.
+Este guia foi consolidado a partir de `frontend/src/App.jsx`, `frontend/landing.css`, `frontend/estilo.css`, `backend/main.py`, `backend/routers`, `backend/models.py`, `backend/store.py` e `documento-persona-ux.md` do projeto.

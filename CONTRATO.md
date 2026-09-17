@@ -19,7 +19,7 @@
 - `Registrar saída` — a pessoa toca no botão secundário; depois da confirmação, a tela atualiza as vagas livres, as vagas ocupadas, o status e a mensagem de confirmação.
 - `Voltar para o início` — a pessoa seleciona a marca no cabeçalho do painel; a interface retorna para a landing page, sem necessidade de uma ação do servidor.
 - `Abrir ou fechar uma dúvida frequente` — a pessoa seleciona uma pergunta da seção de FAQ; a resposta é expandida ou recolhida na própria tela, sem necessidade de uma ação do servidor.
-- `Registrar entrada` na prévia visual da landing page — a pessoa vê um botão com esse texto, mas o componente não possui ação associada a ele no código atual.
+- `Registrar entrada` na prévia visual da landing page — a pessoa seleciona o botão e é direcionada ao painel; a entrada não é registrada automaticamente na prévia.
 
 ## 3. O que o servidor precisaria fazer
 
@@ -31,13 +31,22 @@
 - Nas operações recusadas ou com falha, devolver uma mensagem de erro para que a tela informe que a ação não foi registrada.
 - Para os links de navegação, a seção de FAQ e a marca que retorna ao início, não há trabalho do servidor indicado pelo código atual.
 
-## 4. Dúvidas para o professor
+## 4. Decisões alinhadas
 
-- ? O botão “Registrar entrada” que aparece na prévia da landing page deve ser apenas ilustrativo ou também deve abrir o painel/registrar uma ação? Atualmente ele não possui comportamento associado.
-- ? O registro de saída precisa identificar qual veículo saiu ou basta alterar a contagem geral de vagas? O código atual trabalha somente com a contagem.
-- ? O desfazer deve considerar uma única sequência compartilhada de ações ou deveria ser separado por operador, dispositivo ou turno? O código atual mantém um único histórico.
-- ? A expressão “última ação” deve mostrar somente o texto da ação ou também data e hora? A tela atual mostra apenas texto, com “agora” nas mensagens definidas pelo servidor.
-- ? Qual é o limite oficial para mostrar “ATENÇÃO: POUCAS VAGAS”? O código usa metade da capacidade para o texto, mas aplica uma regra diferente para a classe visual de erro quando há dez vagas ou menos.
-- ? Os valores de 50 vagas, 0 ocupadas e “ENTRADA LIBERADA” na prévia da landing page devem acompanhar os dados reais ou continuar como demonstração fixa?
-- ? O nome do estacionamento precisa vir dos dados do servidor? Na interface atual, “ESTACIONAMENTO DO EVENTO” está escrito diretamente nos componentes.
-- ? Os dados `id` e `historico`, presentes no arquivo de dados, devem permanecer apenas como suporte interno ou algum deles deverá aparecer na interface? Nenhum deles é exibido atualmente.
+- O botão “Registrar entrada” da prévia apenas abre o painel. O registro efetivo acontece somente no botão principal do painel.
+- O registro de saída altera a contagem geral de vagas; não há identificação individual de veículo nesta versão.
+- O desfazer usa uma única sequência compartilhada de ações, mantida no histórico do estacionamento.
+- `ultimaAcao` exibe o texto da última operação, incluindo a indicação “agora” nas mensagens geradas pelo servidor.
+- “ATENÇÃO: POUCAS VAGAS” é exibido quando `vagasLivres` é menor ou igual à metade de `totalVagas`. A apresentação visual fica mais intensa quando há dez vagas ou menos, sem alterar o texto do status.
+- Os números e o status da prévia da landing page permanecem fixos como demonstração; os dados reais aparecem ao abrir o painel.
+- O nome “ESTACIONAMENTO DO EVENTO” permanece fixo na interface nesta versão e não é substituído pelo nome retornado pela API.
+- `id` e `historico` permanecem como dados internos do servidor e não são exibidos diretamente na interface.
+
+## 5. Rotas REST da API
+
+- `GET /api/parking/1` — consulta o estacionamento pelo ID; um ID inexistente retorna `404`.
+- `POST /api/parking/1/entries` — registra uma entrada e atualiza o estado em memória.
+- `POST /api/parking/1/exits` — registra uma saída e atualiza o estado em memória.
+- `POST /api/parking/1/undo` — desfaz a última entrada ou saída registrada.
+
+O estado é fixo em memória e volta aos valores iniciais quando o servidor é reiniciado.

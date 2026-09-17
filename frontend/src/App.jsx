@@ -44,7 +44,7 @@ function Landing({ onPanel }) {
               <div className="dashboard-topline"><span>ESTACIONAMENTO DO EVENTO</span><span className="live-label"><i aria-hidden="true" /> AO VIVO</span></div>
               <div className="dashboard-status">VAGAS DISPONÍVEIS</div><div className="dashboard-number">50</div>
               <div className="dashboard-total">de 50 vagas totais</div><div className="dashboard-occupied">0 ocupadas</div>
-              <div className="dashboard-alert">ENTRADA LIBERADA</div><button className="dashboard-button" type="button">REGISTRAR ENTRADA</button>
+              <div className="dashboard-alert">ENTRADA LIBERADA</div><button className="dashboard-button" type="button" onClick={onPanel}>REGISTRAR ENTRADA</button>
               <div className="dashboard-meta"><span>Última atualização</span><strong>agora</strong></div>
             </div>
           </div>
@@ -83,7 +83,7 @@ function Panel({ onHome }) {
 
   const loadParking = async () => {
     try {
-      const response = await fetch(`${API_BASE}/parking`, { cache: "no-store" });
+      const response = await fetch(`${API_BASE}/parking/1`, { cache: "no-store" });
       const data = await response.json();
       if (!response.ok) throw new Error(data.detail || "Não foi possível carregar as vagas.");
       setParking(data);
@@ -103,7 +103,12 @@ function Panel({ onHome }) {
     setBusy(true);
     setConfirmation("SALVANDO...");
     try {
-      const response = await fetch(`${API_BASE}/parking/${action}`, { method: "POST" });
+      const actionPaths = {
+        entry: "entries",
+        exit: "exits",
+        undo: "undo",
+      };
+      const response = await fetch(`${API_BASE}/parking/1/${actionPaths[action]}`, { method: "POST" });
       const data = await response.json();
       if (!response.ok) throw new Error(data.detail || "Não foi possível concluir a ação.");
       setParking(data.estacionamento);
